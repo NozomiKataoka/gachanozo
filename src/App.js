@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import GachaButton from './components/GachaButton';
+import GachaResult from './components/GachaResult';
 
 function App() {
+  const [item, setItem] = useState(null);
+  const items = ['アイテム1', 'アイテム2', 'アイテム3', 'アイテム4', 'アイテム5'];
+
+  const drawGacha = () => {
+    const randomItem = items[Math.floor(Math.random() * items.length)];
+    setItem(randomItem);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GachaButton onDraw={drawGacha} />
+      <GachaResult item={item} />
     </div>
   );
 }
